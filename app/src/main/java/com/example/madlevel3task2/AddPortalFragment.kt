@@ -1,5 +1,6 @@
 package com.example.madlevel3task2
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_add_portal.*
 
 const val REQ_PORTAL_KEY = "req_portal"
 const val BUNDLE_PORTAL_KEY = "bundle_portal"
+const val BUNDLE_URL_KEY = "bundel_url"
 
 class AddPortalFragment : Fragment() {
 
@@ -42,8 +44,8 @@ class AddPortalFragment : Fragment() {
         val urlText = etUrlName.text.toString()
 
         if (portalText.isNotBlank()) {
-            setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, portalText)))
-            setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, urlText)))
+            setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, portalText), Pair(
+                BUNDLE_URL_KEY, urlText)))
             findNavController().popBackStack()
         } else {
             Toast.makeText(activity, R.string.empty, Toast.LENGTH_SHORT).show()

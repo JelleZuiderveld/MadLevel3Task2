@@ -1,23 +1,14 @@
 package com.example.madlevel3task2
 
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.GridLayout
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_portal.*
-import kotlinx.android.synthetic.main.item_portal.*
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -48,16 +39,21 @@ class PortalFragment : Fragment() {
 
     }
 
-    private fun observeAddPortalResult(){
-        setFragmentResultListener(REQ_PORTAL_KEY){key, bundle ->
-            bundle.getString(BUNDLE_PORTAL_KEY)?.let {
-                val portal = Portal(it, it)
 
-                portals.add(portal)
-                portalAdapter.notifyDataSetChanged()
+    private fun observeAddPortalResult(){
+        var portalText : String? = null
+        setFragmentResultListener(REQ_PORTAL_KEY){_, bundle ->
+            bundle.getString(BUNDLE_PORTAL_KEY)?.let {
+                portalText = it
+                bundle.getString(BUNDLE_URL_KEY)?.let {
+                    val portal = Portal(portalText!!, it)
+                    portals.add(portal)
+                    portalAdapter.notifyDataSetChanged()
+                }
+            }
+
             }
         }
     }
 
 
-}
