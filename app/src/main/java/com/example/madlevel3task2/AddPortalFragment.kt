@@ -34,20 +34,19 @@ class AddPortalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         btnAddPortal.setOnClickListener {
             onAddPortal()
-
         }
     }
 
-    private fun onAddPortal(){
+    private fun onAddPortal() {
         val portalText = etPotralName.text.toString()
         val urlText = etUrlName.text.toString()
 
-        if(portalText.isNotBlank() and urlText.isNotBlank()){
+        if (portalText.isNotBlank()) {
             setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, portalText)))
             setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, urlText)))
             findNavController().popBackStack()
-        }else{
-            Toast.makeText(activity,R.string.empty, Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(activity, R.string.empty, Toast.LENGTH_SHORT).show()
         }
 
     }

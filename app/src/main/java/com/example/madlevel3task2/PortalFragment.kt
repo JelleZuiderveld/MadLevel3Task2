@@ -8,10 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.GridLayout
 import android.widget.LinearLayout
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_portal.*
@@ -40,10 +42,10 @@ class PortalFragment : Fragment() {
     }
 
     private fun initViews(){
-        rvPortals.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        rvPortals.layoutManager = GridLayoutManager(activity, 2)
         rvPortals.adapter = portalAdapter
-        rvPortals.addItemDecoration(DividerItemDecoration(context,DividerItemDecoration.VERTICAL))
         observeAddPortalResult()
+
     }
 
     private fun observeAddPortalResult(){
@@ -56,5 +58,6 @@ class PortalFragment : Fragment() {
             }
         }
     }
+
 
 }

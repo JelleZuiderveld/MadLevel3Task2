@@ -3,10 +3,11 @@ package com.example.madlevel3task2
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ExpandableListView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_portal.view.*
 
-class PortalAdapter(private val portals: List<Portal>) : RecyclerView.Adapter<PortalAdapter.ViewHolder>(){
+class PortalAdapter(private val portals: List<Portal>): RecyclerView.Adapter<PortalAdapter.ViewHolder>(){
 
     /**
      * Creates and returns a ViewHolder object, inflating a standard layout called simple_list_item_1.
@@ -36,7 +37,6 @@ class PortalAdapter(private val portals: List<Portal>) : RecyclerView.Adapter<Po
         fun databind(portal: Portal) {
             itemView.tvPortal.text = portal.portalText
             itemView.tvUrl.text = portal.portalUrl
-
         }
     }
 
