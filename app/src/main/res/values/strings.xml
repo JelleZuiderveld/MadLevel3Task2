@@ -11,4 +11,5 @@
     <string name="add_url">Url</string>
     <string name="add_your_portal">ADD PORTAL</string>
     <string name="empty">Alles moet ingevuld zijn</string>
+    <string name="https">https://</string>
 </resources>
