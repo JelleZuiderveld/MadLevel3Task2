@@ -1,11 +1,14 @@
 package com.example.madlevel3task2
 
+import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.persistableBundleOf
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_portal.*
@@ -14,10 +17,10 @@ import kotlinx.android.synthetic.main.fragment_portal.*
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 
-class PortalFragment : Fragment() {
+class PortalFragment : Fragment(){
 
     private val portals = arrayListOf<Portal>()
-    private val portalAdapter = PortalAdapter(portals)
+    private val portalAdapter = PortalAdapter(portals,{ item: Portal -> itemClicked(item)})
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +39,6 @@ class PortalFragment : Fragment() {
         rvPortals.layoutManager = GridLayoutManager(activity, 2)
         rvPortals.adapter = portalAdapter
         observeAddPortalResult()
-
     }
 
 
@@ -56,4 +58,8 @@ class PortalFragment : Fragment() {
         }
     }
 
+
+    private fun itemClicked(item : Portal) {
+        Log.println(Log.INFO,item.portalText, item.portalUrl)
+    }
 

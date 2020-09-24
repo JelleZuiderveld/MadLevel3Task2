@@ -6,8 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_portal.view.*
 
-class PortalAdapter(private val portals: List<Portal>):
-    RecyclerView.Adapter<PortalAdapter.ViewHolder>(){
+class PortalAdapter(private val portals: List<Portal>,
+                    val clickListener: (Portal) -> Unit
+):RecyclerView.Adapter<PortalAdapter.ViewHolder>(){
 
     /**
      * Creates and returns a ViewHolder object, inflating a standard layout called simple_list_item_1.
@@ -29,14 +30,17 @@ class PortalAdapter(private val portals: List<Portal>):
      * Called by RecyclerView to display the data at the specified position.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(portals[position])
+        (holder as ViewHolder).bind(portals[position], clickListener)
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        fun bind(portal: Portal) {
+        fun bind(portal: Portal,
+                 clickListener: (Portal) -> Unit
+        ) {
             itemView.tvPortal.text = portal.portalText
             itemView.tvUrl.text = portal.portalUrl
+            itemView.setOnClickListener { clickListener(portal) }
         }
     }
 }
