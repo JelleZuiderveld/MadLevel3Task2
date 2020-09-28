@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.os.persistableBundleOf
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.GridLayoutManager
@@ -43,12 +44,12 @@ class PortalFragment : Fragment(){
 
 
     private fun observeAddPortalResult(){
-        var portalText : String? = null
-        setFragmentResultListener(REQ_PORTAL_KEY){_, bundle ->
+        var portalText : String
+        setFragmentResultListener(REQ_PORTAL_KEY){key, bundle ->
             bundle.getString(BUNDLE_PORTAL_KEY)?.let {
                 portalText = it
                 bundle.getString(BUNDLE_URL_KEY)?.let {
-                    val portal = Portal(portalText!!, it)
+                    val portal = Portal(portalText, it)
                     portals.add(portal)
                     portalAdapter.notifyDataSetChanged()
                 }
